@@ -1,1 +1,1 @@
-from st_webcam import WebCam
+from st_webcam.st_webcam import WebCam
