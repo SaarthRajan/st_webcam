@@ -7,7 +7,7 @@ st_webcam is a Python package designed to simplify computer vision projects, pro
 WebCam Class: Easily integrate and control webcam feeds from various sources.
 Streamlit Integration: Seamlessly display webcam feeds in Streamlit apps.
 Image Processing: Provides a simple interface for processing frames captured from the webcam.
-Multi-WebCam Support: Support for multiple webcams with different indexes (e.g., MacBook + iPhone as second camera).
+Multi-WebCam Support: Support for multiple webcams with different indexes.
 Lightweight and Easy to Use: Simple class-based structure, perfect for beginners and prototyping.
 
 ## How to install st-webcam?
