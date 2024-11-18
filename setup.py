@@ -1,19 +1,21 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='st_webcam',
     version='0.0.1',    
     description='Effortless webcam integration for computer vision projects with Streamlit.',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     url='https://github.com/SaarthRajan/st_webcam',
     author='Saarth Rajan',
     author_email='saarth.rajan@uwaterloo.ca',
     license='MIT',
-    packages=['st_webcam'],
+    packages=find_packages(),  # Automatically discover packages
+    keywords=['Computer Vision', 'Streamlit', 'Python', 'Webcam', 'Artificial Intelligence'],
     install_requires=[
-        "opencv-python==4.10.0.84",
-        "streamlit==1.39.0"
+        "opencv-python>=4.0.0,<5.0.0",
+        "streamlit>=1.0.0,<2.0.0"
     ],
-
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -23,11 +25,9 @@ setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
         "Intended Audience :: Science/Research",
-        "Topic :: Software Development :: Libraries",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Topic :: Scientific/Engineering :: Computer Vision",
-        "Topic :: Software Development :: Libraries :: Streamlit",
         "Natural Language :: English",
+        "Programming Language :: Python :: 3",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Multimedia :: Video"
     ]
 )
