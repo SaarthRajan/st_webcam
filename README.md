@@ -10,7 +10,7 @@ Image Processing: Provides a simple interface for processing frames captured fro
 Multi-WebCam Support: Support for multiple webcams with different indexes.
 Lightweight and Easy to Use: Simple class-based structure, perfect for beginners and prototyping.
 
-## How to install st-webcam?
+## How to install st_webcam?
 
 ## Setup your project in Streamlit
 
