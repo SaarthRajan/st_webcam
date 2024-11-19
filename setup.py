@@ -7,7 +7,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/SaarthRajan/st_webcam',
-    author='Saarth Rajan',
+    author='SaarthRajan',
     author_email='saarth.rajan@uwaterloo.ca',
     license='MIT',
     packages=find_packages(),  # Automatically discover packages
