@@ -13,7 +13,9 @@ Lightweight and Easy to Use: Simple class-based structure, perfect for beginners
 ## How to install st_webcam?
 run the following command 
 
-```pip install st-webcam```
+```python
+pip install st-webcam
+```
 
 ## Setup your project in Streamlit
 Import the libraries by using
@@ -24,7 +26,9 @@ from st_webcam import WebCam
 ```
 After writing your code, run the following command to see the streamlit app
 
-```streamlit run main.py```
+```python
+streamlit run main.py
+```
 
 where main.py is your python file
 
