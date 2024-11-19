@@ -18,7 +18,7 @@ Import the libraries by using
 
 ```python
 import streamlit as st
-from st-webcam import WebCam
+from st_webcam import WebCam
 ```
 After writing your code, run the following command to see the streamlit app
 `streamlit run main.py` where main.py is your python file
