@@ -181,7 +181,7 @@ class WebCam:
             frame = frame_func(frame)
         
          # Display the processed frame in the Streamlit app
-        frame_placeholder.image(frame, use_column_width=True, channels="RGB")
+        frame_placeholder.image(frame, use_container_width=True, channels="RGB")
 
     def _create_control_buttons(self):
         
