@@ -11,7 +11,9 @@ Multi-WebCam Support: Support for multiple webcams with different indexes.
 Lightweight and Easy to Use: Simple class-based structure, perfect for beginners and prototyping.
 
 ## How to install st_webcam?
-run the following command `pip install st-webcam`
+run the following command 
+
+```pip install st-webcam```
 
 ## Setup your project in Streamlit
 Import the libraries by using
@@ -21,7 +23,10 @@ import streamlit as st
 from st_webcam import WebCam
 ```
 After writing your code, run the following command to see the streamlit app
-`streamlit run main.py` where main.py is your python file
+
+```streamlit run main.py```
+
+where main.py is your python file
 
 ## Usage Examples
 
