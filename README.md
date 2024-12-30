@@ -1,5 +1,5 @@
 # st-webcam
-## Effortless webcam integration for beginner computer vision projects with Streamlit
+## Effortless webcam integration for computer vision projects with Streamlit
 
 st-webcam is a Python package designed to simplify computer vision projects, providing an easy-to-use interface for common computer vision tasks, such as accessing and displaying webcam feeds, applying basic image processing techniques, and integrating with popular libraries like OpenCV and Streamlit. It is perfect for anyone who wants to get started quickly with computer vision applications without dealing with the complexities of managing camera devices and frame handling.
 
