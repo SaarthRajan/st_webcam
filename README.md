@@ -66,30 +66,40 @@ Where app.py is your Python script that contains the code to display the webcam 
 - label (str, optional): The label for the webcam that will be displayed in the control button (default is "Webcam #index", where 'index' is the webcam device index).
 
 **Example**
+```python
 webcam = WebCam(index=1, label="Custom")
+```
 
 ### start(self, index=None)
 
 **Purpose**
+
 Starts the webcam feed and initializes the VideoCapture object.
 
 **Arguements**
+
 - index (int, optional): The index of the webcam device (default is self.index).
 
 **Example**
+```python
 webcam.start(index=1)
+```
 
 ### stop(self)
 
 **Purpose**
+
 This method releases the webcam resources, clears session state variables, and resets the webcam to a stopped state. If the webcam is not running, it does nothing.
 
 **Example**
+```python
 - webcam.stop()
+```
 
 ### display_frame(self, frame, frame_func=None, frame_placeholder=None)
 
 **Purpose**
+
 Displays the provided frame in the Streamlit interface. Can apply a function before displaying. 
 
 **Arguements**
@@ -98,7 +108,9 @@ Displays the provided frame in the Streamlit interface. Can apply a function bef
  - frame_placeholder (Streamlit placeholder, optional): A placeholder for displaying the frame. Defaults to the instance's placeholder.
 
 **Example**
+```python
 - webcam.display_frame(frame, frame_func=apply_filter, frame_placeholder=placeholder1)
+```
 
 ### For More info on Private Methods, Session States and Identifiers, review the code. 
 
