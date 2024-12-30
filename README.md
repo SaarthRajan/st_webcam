@@ -1,151 +1,182 @@
-# st_webcam - Effortless webcam integration for computer vision projects with Streamlit.
+# st-webcam
+## Effortless webcam integration for beginner computer vision projects with Streamlit
 
-## What is st_webcam?
-st_webcam is a Python package designed to simplify computer vision projects, providing an easy-to-use interface for common computer vision tasks, such as accessing and displaying webcam feeds, applying basic image processing techniques, and integrating with popular libraries like OpenCV and Streamlit. It is perfect for anyone who wants to get started quickly with computer vision applications without dealing with the complexities of managing camera devices and frame handling.
+st-webcam is a Python package designed to simplify computer vision projects, providing an easy-to-use interface for common computer vision tasks, such as accessing and displaying webcam feeds, applying basic image processing techniques, and integrating with popular libraries like OpenCV and Streamlit. It is perfect for anyone who wants to get started quickly with computer vision applications without dealing with the complexities of managing camera devices and frame handling.
+
+This package contains WebCam, which is a Python class designed to make webcam integration with Streamlit simple and effective. It abstracts away the complexity of accessing and managing webcam feeds, allowing you to focus on building computer vision applications. Whether you're prototyping a computer vision project, experimenting with real-time image processing, or just need a straightforward webcam interface, WebCam offers an easy-to-use solution.
+
+## Show Your Support
+
+If you find this template useful, please consider giving it a ⭐ on GitHub! It helps others discover this project and lets me know you’re interested.
+
+[Star this repository](https://github.com/SaarthRajan/st_webcam)
 
 ## Features
 
-WebCam Class: Easily integrate and control webcam feeds from various sources.
+**WebCam Class:** Easily integrate and control webcam feeds from various sources.
 
-Streamlit Integration: Seamlessly display webcam feeds in Streamlit apps.
+**Simple Webcam Control:** Easily start and stop webcam feeds.
 
-Image Processing: Provides a simple interface for processing frames captured from the webcam.
+**Real-time Display:** Stream webcam frames in real time within Streamlit apps.
 
-Multi-WebCam Support: Support for multiple webcams with different indexes.
+**Custom Frame Processing:** Apply custom image processing (e.g., filters, effects) to webcam frames before displaying them.
 
-Lightweight and Easy to Use: Simple class-based structure, perfect for beginners and prototyping.
+**Multi-Webcam Support:** Manage multiple webcams by specifying different device indexes.
 
-## How to install st_webcam?
-run the following command 
+**Session State Management:** Leveraging Streamlit’s session state to handle webcam states and resources efficiently.
+
+**Lightweight & Beginner-Friendly:** Easy-to-understand class-based structure designed for prototyping and learning.
+
+## Install st-webcam?
+
+Run the following command to install dependencies. 
 
 ```python
 pip install st-webcam
 ```
 
-## Setup your project in Streamlit
-Import the libraries by using
+## Quick Start
+
+Import necessary libraries. 
 
 ```python
 import streamlit as st
 from st_webcam import WebCam
+# import other required libraries for your project
 ```
-After writing your code, run the following command to see the streamlit app
+Run the following command to start your streamlit app. 
 
 ```python
-streamlit run main.py
+streamlit run app.py
 ```
 
-where main.py is your python file
+Where app.py is your Python script that contains the code to display the webcam feed.
+
+## Methods
+
+### __init__(self, index=0, label=None)
+
+**Purpose**
+1. Initializes the WebCam object with default or provided webcam index and label. 
+2. Initializes the session state for controlling the webcam feed.
+3. Provides Start/Stop buttons for the webcam feed in the Streamlit interface
+
+**Arguements**
+- index (int, optional): The index of the webcam device (default is 0).
+- label (str, optional): The label for the webcam that will be displayed in the control button (default is "Webcam #index", where 'index' is the webcam device index).
+
+**Example**
+webcam = WebCam(index=1, label="Custom")
+
+### start(self, index=None)
+
+**Purpose**
+Starts the webcam feed and initializes the VideoCapture object.
+
+**Arguements**
+- index (int, optional): The index of the webcam device (default is self.index).
+
+**Example**
+webcam.start(index=1)
+
+### stop(self)
+
+**Purpose**
+This method releases the webcam resources, clears session state variables, and resets the webcam to a stopped state. If the webcam is not running, it does nothing.
+
+**Example**
+- webcam.stop()
+
+### display_frame(self, frame, frame_func=None, frame_placeholder=None)
+
+**Purpose**
+Displays the provided frame in the Streamlit interface. Can apply a function before displaying. 
+
+**Arguements**
+ - frame (ndarray): The frame to be displayed.
+ - frame_func (function, optional): A function to apply additional processing to the frame.
+ - frame_placeholder (Streamlit placeholder, optional): A placeholder for displaying the frame. Defaults to the instance's placeholder.
+
+**Example**
+- webcam.display_frame(frame, frame_func=apply_filter, frame_placeholder=placeholder1)
+
+### For More info on Private Methods, Session States and Identifiers, review the code. 
 
 ## Usage Examples
 
 ### Default Usage
 ```python
-# Create a WebCam object
-webcam = WebCam()
 
-# If the webcam is started, capture and display frames
-frames = webcam.start()
+webcam = WebCam() # webcam object
 
-# Ensure frames is not None before trying to iterate
+frames = webcam.start() # before use
+
 if frames: 
     for frame in frames:
-        webcam.display_frame(frame) # Display frames for webcam
+        webcam.display_frame(frame)
 
-# Stop the webcam when done
-webcam.stop()
+webcam.stop() # after use
 ```
 
 ### Use Grayscale
 ```python
+import cv2
+
 def convert_grayscale(frame):
     return cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-# Initialize WebCam instance for webcam 0
-webcam = WebCam(index=0)
+webcam = WebCam(index=0) # for webcam at index 0
 
-# Start capturing frames
 frames = webcam.start()
 
-# Display frames with grayscale conversion
 if frames:
     for frame in frames:
         webcam.display_frame(frame, frame_func=convert_grayscale)
 
-# Stop the webcam feed once done
 webcam.stop()
 ```
 
 ### Multiple Displays with different effects
 ```python
 def apply_canny_edge_detection(frame):
-    # Convert the frame to grayscale (Canny edge detection works on grayscale images)
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-    
-    # Apply Canny edge detection
     edges = cv2.Canny(gray_frame, 100, 200)
-    
-    # Convert the edges to RGB for display in Streamlit
     edges_rgb = cv2.cvtColor(edges, cv2.COLOR_GRAY2RGB)
-    
     return edges_rgb
 
 def apply_cartoon_effect(frame):
-    # Apply bilateral filter to smooth the image while preserving edges
     bilateral_filtered_frame = cv2.bilateralFilter(frame, d=9, sigmaColor=75, sigmaSpace=75)
-    
-    # Convert to grayscale for edge detection
     gray_frame = cv2.cvtColor(bilateral_filtered_frame, cv2.COLOR_RGB2GRAY)
-    
-    # Apply median blur to the grayscale frame to reduce noise
     blurred_gray = cv2.medianBlur(gray_frame, 7)
-    
-    # Apply adaptive thresholding to detect edges
     cartoon_edges = cv2.adaptiveThreshold(blurred_gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, 
                                           cv2.THRESH_BINARY, blockSize=9, C=9)
-    
-    # Convert the original frame to RGB (for color effect)
-    cartoon_frame = cv2.bitwise_and(bilateral_filtered_frame, bilateral_filtered_frame, mask=cartoon_edges)
-    
+    cartoon_frame = cv2.bitwise_and(bilateral_filtered_frame, bilateral_filtered_frame, mask=cartoon_edges)    
     return cartoon_frame
 
 def apply_sobel_edge_detection(frame):
-    # Convert the frame to grayscale (Sobel works on grayscale images)
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-    
-    # Apply Sobel operator in the X direction (horizontal edges)
     sobel_x = cv2.Sobel(gray_frame, cv2.CV_64F, 1, 0, ksize=3)
-    
-    # Apply Sobel operator in the Y direction (vertical edges)
     sobel_y = cv2.Sobel(gray_frame, cv2.CV_64F, 0, 1, ksize=3)
-    
-    # Combine both X and Y gradients to get the final edge image
     sobel_edges = cv2.magnitude(sobel_x, sobel_y)
-    
-    # Convert to uint8 and back to RGB for display
     sobel_edges = cv2.convertScaleAbs(sobel_edges)
     sobel_edges_rgb = cv2.cvtColor(sobel_edges, cv2.COLOR_GRAY2RGB)
-    
     return sobel_edges_rgb
 ```
+
 ```python
-# Initialize WebCam instance for webcam 0
 webcam = WebCam(index=0, label="Cartoon")
 
-# Start capturing frames if webcam is running
 frames = webcam.start()
 
 placeholder1 = st.empty()
 placeholder2 = st.empty()
 
-# Display frames in Streamlit if available
 if frames:
     for frame in frames:
         webcam.display_frame(frame, apply_canny_edge_detection)
         webcam.display_frame(frame, apply_cartoon_effect, placeholder1)
         webcam.display_frame(frame, apply_sobel_edge_detection, placeholder2)
         
-# Stop the webcam feed once done
 webcam.stop()
 ```
 
@@ -153,4 +184,4 @@ webcam.stop()
 Feel free to fork the project, contribute, or create an issue for any bugs or new features you'd like to see. If you're interested in collaborating, please follow the standard GitHub contribution workflow: fork, clone, create a branch, and submit a pull request.
 
 ## License
-st_webcam is licensed under the MIT License. See the License file for more details.
+st-webcam is licensed under the MIT License. See the License file for more details.
