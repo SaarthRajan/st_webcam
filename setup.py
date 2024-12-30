@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='st_webcam',
-    version='0.1.0',    
+    version='0.1.1',    
     description='Effortless webcam integration for computer vision projects with Streamlit.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -21,7 +21,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: MIT License",
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
         "Intended Audience :: Science/Research",
